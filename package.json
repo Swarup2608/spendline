@@ -1,0 +1,12 @@
+
+{
+  "name": "spendline",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Enterprise spend management platform",
+  "workspaces": [
+    "apps/*"
+  ],
+  "scripts": {},
+  "license": "UNLICENSED"
+}
