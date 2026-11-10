@@ -1,6 +1,6 @@
 <p align="center">
   <img
-    src="./assets/spendline-hero.gif"
+    src="./assets/spendline-md.gif"
     alt="SpendLine — business expense management animation"
     width="100%"
   />
