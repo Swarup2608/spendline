@@ -1,4 +1,3 @@
-
 {
   "name": "spendline",
   "version": "1.0.0",
@@ -8,5 +7,8 @@
     "apps/*"
   ],
   "scripts": {},
-  "license": "UNLICENSED"
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "@types/node": "^26.6.6"
+  }
 }

@@ -22,9 +22,11 @@ export const errorHandler: ErrorRequestHandler = (err : unknown, req, res, next)
 
     res.status(statusCode).json({
         success: false,
-        code,
-        message,
-        ...(isOperationalError && err.details !== undefined ? { details: err.details } : {}),
-        requestId,
+        error : {
+            code,
+            message,
+            ...(isOperationalError && err.details !== undefined ? { details: err.details } : {}),
+            requestId,
+        }
     });
 }
