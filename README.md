@@ -12,12 +12,12 @@
 
 **Submit · Review · Approve · Reimburse · Understand**
 
-[![Node.js](https://img.shields.io/badge/Node.js-24-339933?style=for-the-badge&logo=node.js&logoColor=white)](https://nodejs.org/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-[![Express](https://img.shields.io/badge/Express-000000?style=for-the-badge&logo=express&logoColor=white)](https://expressjs.com/)
-[![Next.js](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=next.js&logoColor=white)](https://nextjs.org/)
-[![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white)](https://www.mongodb.com/)
-[![Redis](https://img.shields.io/badge/Redis-DC382D?style=for-the-badge&logo=redis&logoColor=white)](https://redis.io/)
+[![Node.js](https://img.shields.io/badge/Node.js-24.x-339933?logo=node.js&logoColor=white)](https://nodejs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-7.x-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Express](https://img.shields.io/badge/Express-5.x-000000?logo=express&logoColor=white)](https://expressjs.com/)
+[![Next.js](https://img.shields.io/badge/Next.js-Planned-000000?logo=next.js&logoColor=white)](https://nextjs.org/)
+[![MongoDB](https://img.shields.io/badge/MongoDB-Planned-47A248?logo=mongodb&logoColor=white)](https://www.mongodb.com/)
+[![Redis](https://img.shields.io/badge/Redis-Planned-DC382D?logo=redis&logoColor=white)](https://redis.io/)
 
 > **Project status:** Active development · Foundation phase\
 > **Architecture:** Modular monolith with independently deployed
@@ -387,6 +387,8 @@ flowchart TD
 
 ### 6.3 Expense submission
 
+<p align="center"><img src="./assets/flows/expense-submission.gif" alt="Animated SpendLine expense submission workflow" width="100%" /></p>
+
 ```mermaid
 flowchart TD
     A[Employee selects organization] --> B[Create individual expense or report]
@@ -422,6 +424,8 @@ Expense and report rules:
 
 ### 6.4 Receipt and AI processing
 
+<p align="center"><img src="./assets/flows/receipt-processing.gif" alt="Animated SpendLine receipt AI processing workflow" width="100%" /></p>
+
 ```mermaid
 flowchart TD
     A[Receipt uploaded] --> B[Validate file and authorization]
@@ -452,6 +456,8 @@ AI extraction is assistive:
   requirements.
 
 ### 6.5 Approval workflow
+
+<p align="center"><img src="./assets/flows/approval-reimbursement.gif" alt="Animated SpendLine approval and reimbursement workflow" width="100%" /></p>
 
 ```mermaid
 flowchart TD
