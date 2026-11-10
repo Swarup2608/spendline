@@ -24,6 +24,7 @@ export const errorHandler: ErrorRequestHandler = (err : unknown, req, res, next)
         success: false,
         code,
         message,
+        ...(isOperationalError && err.details !== undefined ? { details: err.details } : {}),
         requestId,
     });
 }

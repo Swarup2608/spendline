@@ -4,6 +4,9 @@ import { logger } from "./utils/logger.js";
 import { AppError } from "./utils/app-error.js";
 import { notFoundHandler } from "./middleware/not-found.js";
 import { errorHandler } from "./middleware/errorHandler.js";
+import {validateRequest} from "./middleware/validate-request.js";
+import {createExpenseSchema} from "./modules/expenses/expense.schema.js";
+import {sendSuccess} from "./utils/api-response.js";
 
 const app = express();
 
@@ -21,11 +24,12 @@ app.use((req, res, next) => {
 });
 
 app.get("/health", (req, res) => {
-    res.status(200).json({
-        success: true,
+    return sendSuccess(res, {
         message: "SpendLine API is healthy",
-        requestId: res.locals.requestId,
-     });
+        data: {
+            status: "healthy",
+        }
+    });
 });
 
 // Temporary route to test error handling
@@ -33,6 +37,14 @@ app.get("/test-error", (req, res, next) => {
     next(
         new AppError("This is a test error", 400, "TEST_ERROR")
     )
+});
+
+app.post("/test-expenses",validateRequest({body: createExpenseSchema}), (req, res) => {
+    return sendSuccess(res, {
+        statusCode: 201,
+        message: "Expense validated successfully",
+        data: req.body
+    }); 
 });
 
 // Unknown route handler
