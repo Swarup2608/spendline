@@ -7,6 +7,7 @@ import { errorHandler } from "./middleware/errorHandler.js";
 import {validateRequest} from "./middleware/validate-request.js";
 import {createExpenseSchema} from "./modules/expenses/expense.schema.js";
 import {sendSuccess} from "./utils/api-response.js";
+import routes from "./routes/index.js";
 
 const app = express();
 
@@ -23,14 +24,7 @@ app.use((req, res, next) => {
     next();
 });
 
-app.get("/health", (req, res) => {
-    return sendSuccess(res, {
-        message: "SpendLine API is healthy",
-        data: {
-            status: "healthy",
-        }
-    });
-});
+app.use(routes);
 
 // Temporary route to test error handling
 app.get("/test-error", (req, res, next) => {
