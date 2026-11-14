@@ -1,6 +1,7 @@
 import type { Server } from "http";
 import { env } from "./config/env.js";
 import { connectMongoDB, disconnectMongoDB } from "./config/mongodb.js";
+import {connectRedis, disconnectRedis} from "./config/redis.js";
 import { logger } from "./utils/logger.js";
 import app from "./app.js";
 
@@ -10,6 +11,7 @@ let isShuttingDown = false;
 const startServer = async (): Promise<void> => {
   try{
     await connectMongoDB();
+    await connectRedis();
 
     server = app.listen(env.PORT, () => {
       logger.info(`Server is running on port ${env.PORT}`);
@@ -19,7 +21,8 @@ const startServer = async (): Promise<void> => {
     logger.error("Failed to start the server", {
       error: error instanceof Error ? error.message : String(error),
     });
-    await disconnectMongoDB();
+    await disconnectMongoDB().catch(() => undefined);
+    await disconnectRedis().catch(() => undefined);
     process.exitCode = 1;
   }
 }
@@ -40,7 +43,8 @@ const shutDown = async (signal: string): Promise<void> => {
         });
       });
     }
-    await disconnectMongoDB();
+    await disconnectMongoDB().catch(() => undefined);
+    await disconnectRedis().catch(() => undefined);
     logger.info("Server shut down gracefully");
     process.exitCode = 0;
   }

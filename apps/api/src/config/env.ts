@@ -16,6 +16,7 @@ const envSchema = z.object({
 
   PORT: z.coerce.number().int().positive().default(3000),
   MONGO_URI: z.string().url(),
+  REDIS_URL: z.string().url(),
 });
 
 // Validate runtime environment variables.

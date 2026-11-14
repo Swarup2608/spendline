@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { isMongoDBConnected } from "../config/mongodb.js";
+import {isRedisConnected } from "../config/redis.js";
 
 const router = Router();
 
@@ -11,13 +12,16 @@ router.get("/health", (_req, res) => {
 });
 
 router.get("/ready", (_req, res) => {
-  const isReady = isMongoDBConnected();
+  const mongodb = isMongoDBConnected();
+  const redis = isRedisConnected();
+  const isReady = mongodb && redis;
 
   res.status(isReady ? 200 : 503).json({
     success: isReady,
     status: isReady ? "ready" : "not_ready",
     dependencies: {
-      mongodb: isReady ? "connected" : "disconnected",
+      mongodb: mongodb ? "connected" : "disconnected",
+      redis: redis ? "connected" : "disconnected",
     },
   });
 });
